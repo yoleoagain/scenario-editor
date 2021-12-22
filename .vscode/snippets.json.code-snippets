@@ -1,0 +1,22 @@
+{
+  "rfc": {
+    "prefix": "rfc",
+    "body": [
+      "import React from 'react'",
+      "import styled from 'styled-components'",
+      "\ntype Props = {}\n",
+      "export const $0: React.FC<Props> = () => {",
+      "\treturn (\n",
+      "\t)",
+      "}"
+    ]
+  },
+  "React useState": {
+    "prefix": "us",
+    "body": [ "const [$1, set$2] = React.useState($3)" ]
+  },
+  "Styled Comonent": {
+    "prefix": "sc",
+    "body": [ "const $0 = styled.$1`\n", "`" ]
+  }
+}
