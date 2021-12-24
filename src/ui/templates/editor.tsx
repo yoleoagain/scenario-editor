@@ -2,9 +2,9 @@
 import styled from 'styled-components'
 
 type Props = {
-  asideContent: React.ReactElement
-  mainContent: React.ReactElement
-  headerContent: React.ReactElement
+  asideContent: React.ReactElement | React.FC
+  mainContent: React.ReactElement | React.FC
+  headerContent: React.ReactElement | React.FC
 }
 
 const Wrapper = styled.section`
