@@ -1,10 +1,10 @@
-﻿import Ract from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  asideContent: React.ReactElement | React.FC
-  mainContent: React.ReactElement | React.FC
-  headerContent: React.ReactElement | React.FC
+  AsideContent: ReactNode
+  MainContent: React.FC
+  HeaderContent: ReactNode
 }
 
 const Wrapper = styled.section`
@@ -21,13 +21,19 @@ const Aside = styled.aside`
   width: 300px;
   position: absolute;
   height: 100vh;
+  left: -300px;
 `
 
-export const EditorTemplate: React.FC<Props> = ({ asideContent }) => {
+export const EditorTemplate: React.FC<Props> = ({ 
+  AsideContent,
+  MainContent,
+}) => {
   return (
     <Wrapper>
-      <Aside>{asideContent}</Aside>
-      <Main>{asideContent}</Main>
+      {/* <Aside>{AsideContent}</Aside> */}
+      <Main>
+        <MainContent />
+      </Main>
     </Wrapper>
   )
 }

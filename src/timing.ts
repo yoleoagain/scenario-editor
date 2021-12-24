@@ -8,7 +8,7 @@ export function createAutoTiming(text: string, editorConfig: EditorConfig = { li
   let timingInSec = 0
 
   return paragraphs.map((p, i) => {
-    const format = v => String(v).length === 1 ? '0' + v : v
+    const format = (v: string | number) => String(v).length === 1 ? '0' + v : v
     const lengthOfParagphInSeconds = Math.round(p.split(' ').reduce((acc, prev, i) => acc + timePerWord, 0))
     const result = {
       timeLabel: `${format(timingInSec)}:${format(timingInSec + lengthOfParagphInSeconds)}`,

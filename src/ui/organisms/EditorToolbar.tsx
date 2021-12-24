@@ -1,8 +1,8 @@
-﻿import React from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { EditorState, RichUtils } from 'draft-js'
 import { RowStart } from '../atoms'
-import { changeEditorState, editorObservable } from '../../store/editor'
+import { changeEditorState, editorObservable, initialEditorState } from '../../store/editor'
 
 // TODO: Made in store by settings
 const BLOCK_TYPES = [
@@ -25,7 +25,7 @@ const ControlButton = styled.button<{ active: boolean }>`
 `
 
 export const EditorToolbar = () => {
-  const [editorState, setEditorState] = React.useState<EditorState>()
+  const [editorState, setEditorState] = React.useState<EditorState>(initialEditorState)
   const selection = editorState.getSelection()
   const blockType = editorState
       .getCurrentContent()
