@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿{
-=======
 {
->>>>>>> 2df38128698fe451e51a947ee7d3ca25d09b9d8f
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -27,8 +23,4 @@
   "include": [
     "src"
   ]
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2df38128698fe451e51a947ee7d3ca25d09b9d8f

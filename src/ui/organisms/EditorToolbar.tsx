@@ -1,14 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-<<<<<<< HEAD
 import { RichUtils } from 'draft-js'
 import { RowStart } from '../atoms'
 import { editoreStore$ } from '../../store/editor'
-=======
-import { EditorState, RichUtils } from 'draft-js'
-import { RowStart } from '../atoms'
-import { changeEditorState, editorObservable, initialEditorState } from '../../store/editor'
->>>>>>> 2df38128698fe451e51a947ee7d3ca25d09b9d8f
 
 // TODO: Made in store by settings
 const BLOCK_TYPES = [
@@ -31,7 +25,6 @@ const ControlButton = styled.button<{ active: boolean }>`
 `
 
 export const EditorToolbar = () => {
-<<<<<<< HEAD
   const [editorState, setEditorState] = React.useState(editoreStore$.value)
 
   React.useEffect(() => {
@@ -39,21 +32,12 @@ export const EditorToolbar = () => {
     return () => sub.unsubscribe()
   }, [])
 
-=======
-  const [editorState, setEditorState] = React.useState<EditorState>(initialEditorState)
->>>>>>> 2df38128698fe451e51a947ee7d3ca25d09b9d8f
   const selection = editorState.getSelection()
   const blockType = editorState
       .getCurrentContent()
       .getBlockForKey(selection.getStartKey())
       .getType()
   
-  React.useEffect(() => {
-    const subject = editorObservable.subscribe(newEditorState => { setEditorState(newEditorState) })
-
-    return () => { subject.unsubscribe() }
-  }, [])
-
   return (
     <RowStart>
       {BLOCK_TYPES.map((type) =>
@@ -61,20 +45,17 @@ export const EditorToolbar = () => {
           key={type.label}
           active={type.style === blockType}
           onClick={() => {
-<<<<<<< HEAD
             setEditorState(
                 RichUtils.toggleBlockType(
                   editorState,
                   blockType
                 )
             )
-=======
-            changeEditorState( RichUtils.toggleBlockType(editorState, blockType) )
->>>>>>> 2df38128698fe451e51a947ee7d3ca25d09b9d8f
           }}
         >
           {type.label}
         </ControlButton>
+
       )}
     </RowStart>
   )
