@@ -1,11 +1,8 @@
 ﻿import React from 'react'
 import styled from 'styled-components'
-import { EditorState } from 'draft-js'
+import { RichUtils } from 'draft-js'
 import { RowStart } from '../atoms'
-
-type Props = { 
-  editorState: EditorState
-}
+import { editoreStore$ } from '../../store/editor'
 
 // TODO: Made in store by settings
 const BLOCK_TYPES = [
@@ -27,7 +24,14 @@ const ControlButton = styled.button<{ active: boolean }>`
   padding: ${({ theme }) => theme.paddings.quarter};
 `
 
-export const EditorToolbar: React.FC<Props> = ({ editorState }) => {
+export const EditorToolbar = () => {
+  const [editorState, setEditorState] = React.useState(editoreStore$.value)
+
+  React.useEffect(() => {
+    const sub = editoreStore$.subscribe(setEditorState)
+    return () => sub.unsubscribe()
+  }, [])
+
   const selection = editorState.getSelection()
   const blockType = editorState
       .getCurrentContent()
@@ -40,14 +44,14 @@ export const EditorToolbar: React.FC<Props> = ({ editorState }) => {
         <ControlButton
           key={type.label}
           active={type.style === blockType}
-          // onClick={() => {
-          //   setEditorState(
-          //       RichUtils.toggleBlockType(
-          //         editorState,
-          //         blockType
-          //       )
-          //   )
-          // }}
+          onClick={() => {
+            setEditorState(
+                RichUtils.toggleBlockType(
+                  editorState,
+                  blockType
+                )
+            )
+          }}
         >
           {type.label}
         </ControlButton>
