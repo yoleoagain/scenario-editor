@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { Editor as DraftEditor } from 'draft-js'
 import { editoreStore$ } from '../../store/editor'
+import { EditorToolbar } from './EditorToolbar'
 
-export const DEditor = () => {
+export const Editor = () => {
   const [editorState, setEditorState] = React.useState(editoreStore$.value)
 
   useEffect(() => {
@@ -11,9 +12,12 @@ export const DEditor = () => {
   }, [])
 
   return(
-    <DraftEditor 
-      editorState={editorState}
-      onChange={setEditorState}
-    />
+    <div>
+      <EditorToolbar />
+      <DraftEditor 
+        editorState={editorState}
+        onChange={(newEditorState) => { editoreStore$.next(newEditorState) }}
+      />
+    </div>
   )
 }

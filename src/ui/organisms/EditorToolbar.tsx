@@ -37,18 +37,21 @@ export const EditorToolbar = () => {
       .getCurrentContent()
       .getBlockForKey(selection.getStartKey())
       .getType()
-  
+      
+  console.log(editorState.getCurrentContent().getPlainText('\u0001'))
   return (
     <RowStart>
       {BLOCK_TYPES.map((type) =>
         <ControlButton
           key={type.label}
           active={type.style === blockType}
-          onClick={() => {
+          onClick={(e) => {
+            console.log('OOOP', type.style)
+            e.preventDefault()
             setEditorState(
                 RichUtils.toggleBlockType(
                   editorState,
-                  blockType
+                  type.style
                 )
             )
           }}
