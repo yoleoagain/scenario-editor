@@ -1,9 +1,18 @@
-﻿type EditorConfig = {
+﻿import { EditorState } from 'draft-js'
+
+type EditorConfig = {
   lineHeight: number
 }
 
-export function createAutoTiming(text: string, editorConfig: EditorConfig = { lineHeight: 14 }){
-  const paragraphs = text.split('\n')
+export const getEditorText = (editorState: EditorState) => editorState.getCurrentContent().getPlainText('\u0001')
+
+export type Timing = {
+  timeLabel: string,
+  text: string
+}
+// export function createAutoTiming(text: string, editorConfig: EditorConfig = { lineHeight: 14 }){
+export function createAutoTiming(text: string): Timing[] {
+  const paragraphs = text.split('\u0001')
   const timePerWord = 0.5
   let timingInSec = 0
 
@@ -14,7 +23,7 @@ export function createAutoTiming(text: string, editorConfig: EditorConfig = { li
       timeLabel: `${format(timingInSec)}:${format(timingInSec + lengthOfParagphInSeconds)}`,
       text: p
     }
-    
+
     timingInSec += lengthOfParagphInSeconds
 
     return result

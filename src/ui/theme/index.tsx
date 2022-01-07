@@ -1,8 +1,10 @@
-﻿export { ThemeProvider } from './provider'
+export { ThemeProvider } from './provider'
 
 export interface IPalette {
   main: string
-  contrastText: string
+  mainColor: string
+  mainLighter: string
+  borderColor: string
 }
 
 export interface ITheme {
@@ -23,7 +25,9 @@ export const lightTheme: ITheme = {
     quarter: '4px',
   },
   palette: {
-    main: '#726a95',
-    contrastText: '#ffffff'
+    main: '#313131',
+    mainLighter: '#1f1c1c',
+    mainColor: '#75655b',
+    borderColor: '#1d1d1d'
   }
 }

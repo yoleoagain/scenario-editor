@@ -1,7 +1,7 @@
 import { ThemeProvider } from './ui/theme'
 import { EditorTemplate } from './ui/templates/EditorTemplate'
 import { Editor } from './ui/organisms/Editor'
-import 'draft-js/dist/Draft.css'
+import './App.css'
 
 function App() {
   return (

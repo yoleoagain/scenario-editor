@@ -11,12 +11,29 @@
       "}"
     ]
   },
+  "Destructuring import": {
+    "prefix": "id",
+    "body": "import { $0 } from '$1'"
+  },
+  "Styled padding": {
+    "prefix": "pd",
+    "body": "padding: ${({ theme }) => theme.paddings.half};"
+  },
+  "Styled color": {
+    "prefix": "cr",
+    "body": "color: ${({ theme }) => theme.palette.mainColor};"
+  },
   "React useState": {
     "prefix": "us",
-    "body": [ "const [$1, set$2] = React.useState($3)" ]
+    "body": [
+      "const [$1, set$2] = React.useState($3)"
+    ]
   },
   "Styled Comonent": {
     "prefix": "sc",
-    "body": [ "const $0 = styled.$1`\n", "`" ]
+    "body": [
+      "const $0 = styled.$1`\n",
+      "`"
+    ]
   }
 }
