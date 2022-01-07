@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Editor as DraftEditor } from 'draft-js'
+import { Editor as DraftEditor, RichUtils } from 'draft-js'
 import { editoreStore$ } from '../../store/editor'
 import { EditorToolbar } from './EditorToolbar'
 
@@ -11,10 +11,10 @@ export const Editor = () => {
     return () => sub.unsubscribe()
   }, [])
 
-  return(
+  return (
     <div>
       <EditorToolbar />
-      <DraftEditor 
+      <DraftEditor
         editorState={editorState}
         onChange={(newEditorState) => { editoreStore$.next(newEditorState) }}
       />
