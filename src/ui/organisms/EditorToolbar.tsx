@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { RichUtils } from 'draft-js'
 import { RowStart } from '../atoms'
 import { editoreStore$ } from '../../store/editor'
-import { useObservableState } from 'observable-hooks'
 
 // TODO: Made in store by settings
 const BLOCK_TYPES = [
@@ -26,9 +25,8 @@ const ControlButton = styled.button<{ active: boolean }>`
 `
 
 export const EditorToolbar = () => {
-  // Example to cut boilerplate
+  // Example to cut boilerplate 
   // const editorState = useObservableState(editoreStore$, editoreStore$.value)
-
   const [editorState, setEditorState] = React.useState(editoreStore$.value)
 
   React.useEffect(() => {
@@ -43,7 +41,6 @@ export const EditorToolbar = () => {
       .getStartKey())
     .getType()
 
-  console.log(editorState.getCurrentContent().getPlainText('\u0001'))
   return (
     <RowStart>
       {BLOCK_TYPES.map((type) =>
