@@ -20,21 +20,20 @@ const TimingItem = styled.div`
   color: ${({ theme }) => theme.palette.mainColor};
   background: ${({ theme }) => theme.palette.mainLighter};
   text-align: center;
-  border-radius: 8px;
+  min-height: 20.8px;
 `
 
 
 export const TimeLine: React.FC<Props> = () => {
   const editorState = useObservableState(editoreStore$, editoreStore$.value)
   const timings = createAutoTiming(getEditorText(editorState))
-  // const timings = useMemo<Timing[]>(() => createAutoTiming(getEditorText(editorState)), [editorState])
   console.log('timings', timings)
   return (
 
     <Wrap>
       {timings.map(t =>
         <TimingItem>
-          {t.timeLabel}
+          {t.isEmptyRow ? '' : t.timeLabel}
         </TimingItem>
       )}
     </Wrap>

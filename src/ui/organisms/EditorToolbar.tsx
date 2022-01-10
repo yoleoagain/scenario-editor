@@ -22,6 +22,8 @@ const ControlButton = styled.button<{ active: boolean }>`
   border: none;
   outline: none;
   padding: ${({ theme }) => theme.paddings.quarter};
+  background: ${({ theme }) => theme.palette.mainLighter};
+  color: ${({ theme }) => theme.palette.mainColor};
 `
 
 export const EditorToolbar = () => {
