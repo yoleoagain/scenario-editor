@@ -1,9 +1,10 @@
-﻿import React, { useMemo } from 'react'
+﻿import React from 'react'
 import styled from 'styled-components'
 import { Column } from '../atoms/Column'
 import { editoreStore$ } from 'store/editor'
 import { useObservableState } from 'observable-hooks'
-import { createAutoTiming, getEditorText, Timing } from 'ui/utils/editor'
+import { createAutoTiming, Timing } from 'ui/utils/time-line'
+import { getEditorText } from 'ui/utils/editor'
 
 type Props = {}
 
@@ -14,28 +15,40 @@ const Wrap = styled(Column)`
   min-height: calc(100vh - 40px);
 `
 const TimingItem = styled.div`
-  padding: 2px;
   color: #000;
   font-size: 14px;
   color: ${({ theme }) => theme.palette.mainColor};
   background: ${({ theme }) => theme.palette.mainLighter};
   text-align: center;
-  min-height: 20.8px;
 `
 
 
 export const TimeLine: React.FC<Props> = () => {
   const editorState = useObservableState(editoreStore$, editoreStore$.value)
   const timings = createAutoTiming(getEditorText(editorState))
-  console.log('timings', timings)
+  
   return (
-
+    // TODO: Replace timing item in separate component
     <Wrap>
-      {timings.map(t =>
-        <TimingItem>
-          {t.isEmptyRow ? '' : t.timeLabel}
-        </TimingItem>
-      )}
+      {timings.map(t => {
+        let style = {};
+
+        if (t?.rowNode && 'getComputedStyle' in window){
+          const { rowNode } = t
+          const { paddingTop, paddingBottom, marginBottom, marginTop } = getComputedStyle(rowNode)
+
+          style = {
+            height: `calc(${paddingTop} + ${paddingBottom} + ${marginTop} + ${marginBottom} + ${rowNode.offsetHeight}px)`,
+          }
+          console.log(style.height)
+        }
+
+        return (
+          <TimingItem style={style}>
+            {t.isEmptyRow ? '' : t.timeLabel}
+          </TimingItem>
+        )
+      })}
     </Wrap>
   )
 }
