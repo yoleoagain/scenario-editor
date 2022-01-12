@@ -20,6 +20,7 @@ const TimingItem = styled.div`
   color: ${({ theme }) => theme.palette.mainColor};
   background: ${({ theme }) => theme.palette.mainLighter};
   text-align: center;
+  /* min-height: 20.8px; */
 `
 
 
@@ -37,10 +38,11 @@ export const TimeLine: React.FC<Props> = () => {
           const { rowNode } = t
           const { paddingTop, paddingBottom, marginBottom, marginTop } = getComputedStyle(rowNode)
 
+          // console.log(paddingTop, paddingBottom, marginBottom, marginTop, rowNode.offsetHeight)
+          
           style = {
             height: `calc(${paddingTop} + ${paddingBottom} + ${marginTop} + ${marginBottom} + ${rowNode.offsetHeight}px)`,
           }
-          console.log(style.height)
         }
 
         return (
