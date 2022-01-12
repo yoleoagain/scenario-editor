@@ -5,7 +5,7 @@ import { editoreStore$ } from 'store/editor'
 import { useObservableState } from 'observable-hooks'
 import { createAutoTiming } from 'ui/utils/time-line'
 import { getEditorText } from 'ui/utils/editor'
-import { TimeLineItem } from '../molecules/time-line-item'
+import { TimeLineItem } from '../molecules/TimeLineItem'
 
 type Props = {}
 
