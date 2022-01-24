@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { RichUtils } from 'draft-js'
 import { RowStart } from '../atoms'
 import { editoreStore$ } from '../../store/editor'
+import { ButtonToogle } from '../atoms/ButtonToogle'
 
 // TODO: Made in store by settings
 const BLOCK_TYPES = [
@@ -46,20 +47,16 @@ export const EditorToolbar = () => {
   return (
     <RowStart>
       {BLOCK_TYPES.map((type) =>
-        <ControlButton
+        <ButtonToogle
           key={type.label}
+          label={type.label}
           active={type.style === blockType}
           onClick={(e) => {
-            console.log('OOOP', type.style)
             e.preventDefault()
-            const newState = RichUtils.toggleBlockType(editorState, type.style)//RichUtils.toggleInlineStyle(editorState, 'BOLD')
-
+            const newState = RichUtils.toggleBlockType(editorState, type.style)
             editoreStore$.next(newState)
           }}
-        >
-          {type.label}
-        </ControlButton>
-
+        />
       )}
     </RowStart>
   )
