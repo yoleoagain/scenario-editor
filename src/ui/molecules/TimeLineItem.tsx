@@ -1,8 +1,8 @@
 ﻿import React from 'react'
 import styled from 'styled-components'
-import { createAutoTiming, Timing } from 'ui/utils/time-line'
+import { Timing } from 'ui/utils/time-line'
 
-type Props = { item:Timing }
+type Props = { item: Timing }
 
 const TimingItem = styled.div`
   color: #000;
@@ -18,9 +18,7 @@ export const TimeLineItem: React.FC<Props> = ({ item }) => {
   if (item?.rowNode && 'getComputedStyle' in window){
     const { rowNode } = item
     const { paddingTop, paddingBottom, marginBottom, marginTop } = getComputedStyle(rowNode)
-
-    // console.log(paddingTop, paddingBottom, marginBottom, marginTop, rowNode.offsetHeight)
-    
+        
     style = {
       height: `calc(${paddingTop} + ${paddingBottom} + ${marginTop} + ${marginBottom} + ${rowNode.offsetHeight}px)`,
     }

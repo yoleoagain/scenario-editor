@@ -1,4 +1,6 @@
-﻿export type Timing = {
+﻿import { trimWord, fromSecondsToTimeLabel } from './string'
+
+export type Timing = {
   timeLabel: string
   text: string
   isEmptyRow: boolean
@@ -15,11 +17,14 @@ export function createAutoTiming(text: string): Timing[] {
 
   //@ts-ignore
   return paragraphs.map((p, i) => {
-    const format = (v: string | number) => String(v).length === 1 ? '0' + v : v
-    const lengthOfParagphInSeconds = Math.round(p.split(' ').reduce(acc => acc + timePerWord, 0))
-    const isEmptyRow = p.replace(/ /g, '') === ''
+    const trimmedParagraph = trimWord(p)
+    const lengthOfParagphInSeconds = Math.round(p.split(' ')
+                                                 .reduce((acc, word) => trimWord(word).length === 0 
+                                                  ? acc + 0
+                                                  : acc + timePerWord, 0))
+    const isEmptyRow = trimmedParagraph.length === 0
     const result = {
-      timeLabel: `${format(timingInSec)}:${format(timingInSec + lengthOfParagphInSeconds)}`,
+      timeLabel: fromSecondsToTimeLabel(lengthOfParagphInSeconds + timingInSec),
       text: p,
       rowNode: rows[i],
       isEmptyRow
