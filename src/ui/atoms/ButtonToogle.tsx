@@ -1,7 +1,7 @@
 ﻿import React from 'react'
 import styled from 'styled-components'
 
-interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
+interface ButtonProps extends React.ComponentPropsWithoutRef<'button'>{
   active?: boolean
   label: string
 }
@@ -11,6 +11,7 @@ const ButtonToogleStyled = styled.button<{ active?: boolean }>`
   padding: ${({ theme }) => theme.paddings.quarter};
   background: ${({ theme, active }) => active ? theme.palette.main : theme.palette.mainLighter};
   color: ${({ theme }) => theme.palette.mainColor};
+  cursor: pointer;
 `
 
 export const ButtonToogle: React.FC<ButtonProps> = ({
